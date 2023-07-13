@@ -54,16 +54,16 @@ h1 {
   z-index: 999;
 }
 
-#modal-content {
+#modalContent {
   padding: 3px;
   text-align: center;
 }
 
-#modal-title {
+#modalTitle {
   margin-top: 0;
 }
 
-#play-again {
+#replay{
   padding: 10px 20px;
   font-size: 16px;
   background-color: #4caf50;

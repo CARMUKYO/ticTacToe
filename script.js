@@ -23,7 +23,7 @@ const displayController = function(){
         })
     }
     const showModal = function(message){
-        document.getElementById("modal-title").textContent = message;
+        document.getElementById("modalTitle").textContent = message;
         document.getElementById("modal").classList.remove("hidden");
         document.getElementById("modal").style.visibility = "visible";
       };
@@ -62,8 +62,13 @@ const gameController = function(){
             displayController.renderBoard();
             let winner = checkWin();
             if(winner){
-                displayController.showModal(`Player ${winner} wins!`);
-                return;
+                if(winner === "X"){
+                    displayController.showModal(`Player 1 wins!`);
+                    return;
+                }else{
+                    displayController.showModal(`Player 2 wins!`);
+                    return;
+                }    
             }else if(board.every((cell) => cell !== "")) {
                 displayController.showModal("It's a tie!");
                 return;
@@ -72,24 +77,24 @@ const gameController = function(){
     } }
 
     const checkWin = function(){
-    const board = gameBoard.getBoard();
-    const win = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6],
-    ];
+        const board = gameBoard.getBoard();
+        const win = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6],
+        ];
 
-    for(let combo of win){
-        if( board[combo[0]] !== "" && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]){
-            return board[combo[0]];
+        for(let combo of win){
+            if( board[combo[0]] !== "" && board[combo[0]] === board[combo[1]] && board[combo[0]] === board[combo[2]]){
+                return board[combo[0]];
+            }
         }
-    }
-        return false; 
+            return false; 
     }   
 
     const startGame = () => {
@@ -106,7 +111,7 @@ const gameController = function(){
 
 gameController.startGame();
 
-document.getElementById("play-again").addEventListener("click", () => {
+document.getElementById("replay").addEventListener("click", () => {
     gameBoard.resetBoard();
     displayController.renderBoard();
     displayController.hideModal();
